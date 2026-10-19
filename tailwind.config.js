@@ -92,12 +92,23 @@ export default {
           from: { transform: 'translateY(110%)', opacity: '0' },
           to: { transform: 'translateY(0)', opacity: '1' },
         },
+        cue: {
+          '0%': { transform: 'translateX(-6px)', opacity: '0' },
+          '35%': { opacity: '1' },
+          '100%': { transform: 'translateX(52px)', opacity: '0' },
+        },
+        sheen: {
+          '0%': { transform: 'translateX(-140%) skewX(-18deg)' },
+          '100%': { transform: 'translateX(420%) skewX(-18deg)' },
+        },
       },
       animation: {
         'fade-up': 'fade-up 0.6s ease-out both',
         'pulse-ring': 'pulse-ring 2.4s cubic-bezier(0.2,0.6,0.35,1) infinite',
         marquee: 'marquee 36s linear infinite',
         'roll-in': 'roll-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both',
+        cue: 'cue 1.9s cubic-bezier(0.45, 0, 0.55, 1) infinite',
+        sheen: 'sheen 0.7s ease-out both',
       },
     },
   },
