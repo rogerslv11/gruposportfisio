@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-height: 84px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink-800 antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-semibold text-ink-900;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Visible, on-brand focus ring for keyboard users */
+  :focus-visible {
+    @apply outline-none ring-2 ring-sport-500 ring-offset-2 ring-offset-paper;
+  }
+
+  ::selection {
+    @apply bg-ink-900 text-paper;
+  }
+
+  /* Slim, branded scrollbar on supporting browsers */
+  @supports (scrollbar-color: auto) {
+    html {
+      scrollbar-color: #a9bdec transparent;
+      scrollbar-width: thin;
+    }
+  }
+}
+
+@layer components {
+  .section {
+    @apply py-20 md:py-28;
+  }
+
+  .section-tight {
+    @apply py-14 md:py-20;
+  }
+
+  /* Small caps kicker used across sections (01 — Label) */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.24em];
+  }
+
+  /* Editorial display headline */
+  .display {
+    @apply font-display font-semibold uppercase leading-[0.95] tracking-normal;
+  }
+
+  /* Serif italic accent word inside display headings */
+  .accent-word {
+    @apply font-serif font-normal normal-case italic tracking-normal;
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1.5px;
+    transition: background-size 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .link-underline:hover {
+    background-size: 100% 1.5px;
+  }
+
+  .card-hover {
+    @apply transition duration-300 ease-out;
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-0.5 shadow-card;
+  }
+
+  /* Editorial marquee strip */
+  .marquee-track {
+    @apply flex w-max shrink-0 items-center animate-marquee;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@layer utilities {
+  /* Hairline rules — a assinatura editorial do layout */
+  .rule {
+    @apply border-ink-900/10;
+  }
+
+  .rule-light {
+    @apply border-white/15;
+  }
+
+  /* Giant outlined ghost word (decorativo) */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.16);
+  }
+
+  .text-outline-dark {
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(7, 19, 54, 0.14);
+  }
+}
+
+/* ----------------------------------------------------------------
+   Reduced-motion: guarantee full content visibility without GSAP
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Note: scroll-reveal elements are only hidden at runtime by GSAP.
+   If JavaScript fails, all content remains visible and accessible. */
